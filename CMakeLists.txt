@@ -1,9 +1,10 @@
-if(APPLE)
-  cmake_minimum_required(VERSION 2.8.11 FATAL_ERROR)
-else()
-  cmake_minimum_required(VERSION 2.8.7 FATAL_ERROR)
-endif()
+cmake_minimum_required(VERSION 3.3)
 
-add_library(boost_config INTERFACE GLOBAL)
+project(boost_config)
 
-target_include_directories(boost_config BEFORE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_library(boost_config INTERFACE)
+
+target_include_directories(boost_config BEFORE INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+install(TARGETS boost_config DESTINATION lib)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/boost DESTINATION include)
